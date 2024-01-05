@@ -1,0 +1,55 @@
+.table-class{
+    width: 900px;
+    margin: 150px auto;
+}
+
+.heading-one{
+    width: 900px;
+    height: 69px;
+    border-color: #072673BF;
+    background: #072673BF;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 29px;
+    text-align: left;
+}
+
+.heading-one th{
+    color: #F5F5F5;
+
+}
+
+.heading-two{
+    border: 2px;
+    border-color: #072673BF;
+    gap: 5px;
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    background: #FFFFFF;
+}
+
+.heading-two td{
+    width: 1160px;
+    gap: 42px;
+    padding: 15px 0;
+}
+.user_headingId {
+    padding-left:15px;
+}
+.heading-two .user_id {
+    padding-left:15px;
+}
+
+body{
+background: #F5F5F5;
+}
+
+.a-tegi{
+    text-decoration: none;
+    color: #111111;
+}

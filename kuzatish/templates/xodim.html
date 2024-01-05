@@ -1,0 +1,91 @@
+<!--
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ k_k_vaqt.xodim }} {{ k_K_vaqt.xodim }}</title>
+    <link rel="stylesheet" href="{% static 'css/xodimlar.css' %}">
+
+</head>
+<body>
+<div class="container">
+    <div>
+    <h1>{{ xodim.ismi }} {{ xodim.familiyasi }}ning ishxonaga kelib ketish tarixi</h1>
+    <table class="table" border="1">
+        <tr>
+            <th>Sana</th>
+            <th>Ishga kelgan vaqti</th>
+            <th>Ishdan ketgan vaqti</th>
+        </tr>
+        {% for k_k in k_k_vaqt %}
+        <tr>
+            <td>
+                {{ k_k.kelish_vaqti.date }}
+            </td>
+            <td>
+                {{ k_k.kelish_vaqti.time }}
+            </td>
+            <td>
+                {{ k_k.ketish_vaqti.time }}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+</div>
+</body>
+</html>-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xodimlar</title>
+    <link rel="stylesheet" href="{% static 'css/haftalik.css' %}">
+
+</head>
+<body>
+<div style="display: flex; align-items: center; margin: 10px auto; padding-bottom: 5px; background: #FFFFFF; width: 900px;">
+    <div style="padding-left:20px">
+        <img src="{{ xodimlar.img.url }}" width="48px" height="64px" style="object-fit: cover;">
+    </div>
+    <div style="font-size: 32px; font-weight: 600; line-height: 40px; padding-left: 20px;">
+        {{ xodimlar.ismi }} {{ xodimlar.familiyasi }}ning ishxonaga kelib ketish tarixi
+    </div>
+</div>
+    <table class="table-class" style="margin: 0 auto; width: -webkit-fill-available;">
+        <tr class="heading-one">
+            <th class="user_headingId">Sana</th>
+            <th>Ishga kelgan vaqti</th>
+            <th>Ishdan ketgan vaqti</th>
+        </tr>
+        {% for k_k in k_k_vaqt %}
+        <tr class="heading-two">
+            <td class="user_id">
+                {{ k_k.kelish_vaqti|date:"d-m-Y" }}
+            </td>
+            {% if k_k.kelish_vaqti %}
+                {% if k_k.kelish_vaqti|time:"H:i:s" > "09:00:00" %}
+                    <td style="color: #ff1303">{{ k_k.kelish_vaqti|time:"H:i:s" }}</td>
+                {% else %}
+                    <td>{{ k_k.kelish_vaqti|time:"H:i:s" }}</td>
+                {% endif %}
+            {% else %}
+                <td style="color: #ff1303"><b>Kelmagan</b></td>
+            {% endif %}
+            <td>
+                {{ k_k.ketish_vaqti|time:"H:i:s" }}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Information</title>
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Contact Information</h1>
+  </header>
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      <label for="username">username:</label>
+      <input class="form-control" type="text" name="username" id="username" required>
+    </div>
+    <div>
+      <label for="password">password:</label>
+      <input class="form-control" type="password" name="password" id="password" required>
+    </div>
+    <input class="btn btn-primary mt-3" type="submit" value="login">
+  </form>
+
+<!--  <form class="contact-form">-->
+<!--    <div class="form-group">-->
+<!--      <label for="organization">Organization:</label>-->
+<!--      <input type="text" id="organization" name="organization" required>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--      <label for="full-name">Full Name (F.I.O):</label>-->
+<!--      <input type="text" id="full-name" name="full-name" required>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--      <label for="email">Email:</label>-->
+<!--      <input type="email" id="email" name="email" required>-->
+<!--    </div>-->
+
+<!--    <div class="form-group">-->
+<!--      <label for="phone">Phone Number:</label>-->
+<!--      <input type="tel" id="phone" name="phone" required>-->
+<!--    </div>-->
+
+<!--    <button type="submit">Submit</button>-->
+<!--  </form>-->
+</body>
+</html>

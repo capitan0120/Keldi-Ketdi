@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Haftalik</title>
+    <link rel="stylesheet" href="{% static 'css/haftalik.css' %}">
+
+</head>
+<body>
+    <button type="button" style="margin-left: 320px; margin-bottom: -10px; font-size: 32px; font-weight: 600; line-height: 40px; background: #072673BF; padding: 2px 8px;"><a style="text-decoration: none; color: white;" href="{% url 'xodimlar-ruyxati' %}">Orqaga</a></button>
+    <table class="table-class">
+        <tr class="heading-one">
+            <th class="user_headingId">Sana</th>
+            <th>F.I.SH</th>
+            <th class="user_headingId">Foto</th>
+            <th>Ishga kelgan vaqti</th>
+            <th>Ishdan ketgan vaqti</th>
+        </tr>
+        {% for hafta in haftalik %}
+        <tr class="heading-two">
+            <td class="user_id">
+                {{ hafta.kelish_vaqti.date }}
+            </td>
+            <td>
+                {{ hafta.xodim }}
+            </td>
+            <td class="user_id">
+                {% if hafta.xodim.img %}
+                    <img src="{{ hafta.xodim.img.url }}" width="48px" height="64px">
+                {% endif %}
+            </td>
+            <td>
+                {{ hafta.kelish_vaqti.time }}
+            </td>
+            <td>
+                {{ hafta.ketish_vaqti.time }}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

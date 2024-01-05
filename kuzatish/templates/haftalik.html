@@ -1,0 +1,66 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Haftalik</title>
+    <link rel="stylesheet" href="{% static 'css/haftalik.css' %}">
+
+</head>
+<body>
+    <button type="button" style="margin-bottom: -10px; font-size: 32px; font-weight: 600; line-height: 40px; background: #072673BF; padding: 2px 8px;"><a style="text-decoration: none; color: white;" href="{% url 'xodimlar-list' %}">Orqaga</a></button>
+    <h1 style="text-align: center; background: #072673BF; color: floralwhite; width: 400px;
+    margin: 15px auto; padding: 10px;">Haftaning Ma'lumotlari</h1>
+    <table class="table-class" style="margin: 0 auto; width: -webkit-fill-available;">
+        <thead>
+            <tr class="heading-one">
+                <th>ID</th>
+                <th>Xodim</th>
+                <th>FOTO</th>
+                <th>Dushanba</th>
+                <th>Seshanba</th>
+                <th>Chorshanba</th>
+                <th>Payshanba</th>
+                <th>Juma</th>
+                <th>Shanba</th>
+                <th>Umumiy kechikkan vaqt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for xodim, hafta_kuni in week_dict.items %}
+                <tr class="heading-two">
+                    <td>{{ xodim.id }}</td>
+                    <td>{{ xodim.ismi }} {{ xodim.familiyasi }}</td>
+                    <td>
+                        <img src="{{ xodim.img.url }}" width="48px" height="64px" style="object-fit: cover;">
+                    </td>
+                    {% for kun, kelish_vaqti in hafta_kuni.items %}
+                        <td>
+                            {% if kelish_vaqti %}
+                                {% for vaqt in kelish_vaqti %}
+                                    {% if vaqt|time:"H:i:s" > "09:00:00" %}
+                                        <p style="color: #ff1303">{{ vaqt|time:"H:i:s" }}</p>
+                                    {% else %}
+                                        <p>{{ vaqt|time:"H:i:s" }}</p>
+                                    {% endif%}
+                                {% endfor %}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+                    <td>
+                        {% if kelish_vaqti %}
+                            {% with total_time=kelish_vaqti|length %}
+                                {{ total_time }}
+                            {% endwith %}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xodimlar</title>
+    <link rel="stylesheet" href="{% static 'css/haftalik.css' %}">
+    <style>
+        button a{
+           text-decoration: none;
+           padding-right: 40px;
+           color: #F5F5F5;
+           font-family: Montserrat;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 29px;
+        }
+        button{
+            background: #072673BF;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: grid; justify-content: end;">
+        <button><a href="{% url 'haftalik' %}">Haftalik</a></button>
+
+        <button><a href="{% url 'oylik' %}">Oylik</a></button>
+
+        <button><a href="{% url 'period' %}">Period</a></button>
+    </div>
+    <h1 style="text-align: center; background: #072673BF; color: floralwhite; width: 200px;
+         padding: 10px;">Xodimlar</h1>
+    <table class="table-class" style="margin: 0 auto; width: -webkit-fill-available;">
+        <tr class="heading-one">
+            <th>ID</th>
+            <th>F.I.SH</th>
+            <th>FOTO</th>
+            <th>TUG'ILGAN KUNI</th>
+            <th>KASBI</th>
+            <th>KELGAN VAQTI</th>
+        </tr>
+        {% for vaqt in xodimlar_va_vaqtlar %}
+            <tr class="heading-two">
+                <td>{{ vaqt.xodim.id }}</td>
+                <td><a style="text-decoration: none; color: black;" href="{% url 'xodim-detail' vaqt.xodim.pk %}">{{ vaqt.xodim }}</a></td>
+                <td><img src="{{ vaqt.xodim.img.url }}" width="48px" height="64px" style="object-fit: cover;"></td>
+                <td>{{ vaqt.xodim.birthday|date:"d-m-Y" }}</td>
+                <td>{{ vaqt.xodim.kasbi }}</td>
+                {% if vaqt.kelish_vaqti %}
+                    {% if vaqt.kelish_vaqti|time:"H:i:s" > "09:00:00" %}
+                        <td style="color: #ff1303">{{ vaqt.kelish_vaqti|time:"H:i:s" }}</td>
+                    {% else %}
+                        <td>{{ vaqt.kelish_vaqti|time:"H:i:s" }}</td>
+                    {% endif %}
+                {% else %}
+                    <td style="color: #ff1303"><b>Kelmagan</b></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

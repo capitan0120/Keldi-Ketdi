@@ -1,0 +1,49 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Oylik</title>
+    <link rel="stylesheet" href="{% static 'css/haftalik.css' %}">
+
+</head>
+<body>
+    <button type="button" style="margin-bottom: 20px; font-size: 32px; font-weight: 600; line-height: 40px; background: #072673BF; padding: 2px 8px;"><a style="text-decoration: none; color: white;" href="{% url 'xodimlar-list' %}">Orqaga</a></button>
+    <h1 style="text-align: center; background: #072673BF; color: floralwhite; width: 400px;
+        margin: 15px auto; padding: 10px;">Oylik Ma'lumotlar</h1>
+    <table class="table-class" style="margin: 0 auto; width: -webkit-fill-available;">
+        <tr class="heading-one">
+            <th class="user_headingId">Sana</th>
+            <th>F.I.SH</th>
+            <th class="user_headingId">Foto</th>
+            <th>Ishga kelgan vaqti</th>
+            <th>Ishdan ketgan vaqti</th>
+        </tr>
+        {% for sana in sanalar %}
+        <tr class="heading-two">
+            <td class="user_id">
+                {{ sana.kelish_vaqti.date }}
+            </td>
+            <td>
+                {{ sana.xodim }}
+            </td>
+            <td class="user_id">
+                {% if sana.xodim.img %}
+                    <img src="{{ sana.xodim.img.url }}" width="48px" height="64px">
+                {% endif %}
+                {% if sana.kelish_vaqti %}
+                    {% if sana.kelish_vaqti|time:"H:i:s" > "09:00:00" %}
+                        <td style="color: #ff1303">{{ sana.kelish_vaqti|time:"H:i:s" }}</td>
+                    {% else %}
+                        <td>{{ sana.kelish_vaqti|time:"H:i:s" }}</td>
+                    {% endif %}
+                {% else %}
+                    <td style="color: #ff1303"><b>Kelmagan</b></td>
+                {% endif %}
+            <td>{{ sana.ketish_vaqti|time:"H:i:s" }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>

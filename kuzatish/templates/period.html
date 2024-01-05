@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Period</title>
+    <link rel="stylesheet" href="{% static 'css/xodimlar.css' %}">
+</head>
+<body>
+    <h2 style="padding-left: 5rem;"><a href="{% url 'xodimlar-list' %}">Orqaga</a></h2>
+
+    <h1 style="color:white">Period</h1>
+    <form method='post'>
+        {% csrf_token %}
+        <input type="date" name="start_date">   -   <input type="date" name="end_date">
+        <button type="submit">Submit</button>
+    </form>
+
+<!--    {% if start_date or end_date is None %}-->
+<!--        <h3>Oraliq vaqtni kirgizing</h3>-->
+<!--    {% else %}-->
+<div class="container">
+    <div>
+    <h1>Xodimlarning {{ start_d }} - {{ end_d }}  kunlardagi kelib ketish tarixi</h1>
+    <table style="color: white" class="table" border="1">
+        <tr>
+            <th>Sana</th>
+            <th>Ismi-Sharifi</th>
+            <th>Ishga kelgan vaqti</th>
+            <th>Ishdan ketgan vaqti</th>
+        </tr>
+        {% for period in periods %}
+        <tr>
+            <td>
+                {{ period.kelish_vaqti.date }}
+            </td>
+            <td>
+                {{ period.xodim }}
+            </td>
+            <td>
+                {{ period.kelish_vaqti.time }}
+            </td>
+            <td>
+                {{ period.ketish_vaqti.time }}
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+</div>
+<!--    {% endif %}-->
+
+</body>
+</html>

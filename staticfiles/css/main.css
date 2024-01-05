@@ -1,0 +1,35 @@
+.header{
+    with: 500px;
+    height: 500px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.name-company{
+    color: #63C5DA;
+}
+
+body {
+    background-color: black;
+}
+
+.register-login{
+    color: #63C5DA;
+    text-align: center;
+}
+
+a{
+    color: #63C5DA;
+    text-decoration: none;
+}
+
+h1{
+    text-align: center;
+    font-size: 5rem;
+}
+
+img{
+    padding-top: 130px;
+}

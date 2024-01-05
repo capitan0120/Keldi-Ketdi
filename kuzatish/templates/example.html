@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Oylik Ma'lumotlar</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Oylik Ma'lumotlar</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Xodim</th>
+                <th>Kelish vaqti</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for xodim, kelish_ketishlar in oylik_malumotlar.items %}
+                {% for kelish_vaqti in kelish_ketishlar %}
+                    <tr>
+                        <td>{{ xodim.ismi }} {{ xodim.familiyasi }}</td>
+                        <td>{{ kelish_vaqti }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

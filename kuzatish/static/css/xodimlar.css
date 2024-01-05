@@ -1,0 +1,28 @@
+.table {
+font-size: 2rem;
+
+}
+a{
+    text-decoration: none;
+    color: #84bf94;
+}
+
+td{
+    padding-left: 1.2rem;
+    padding-right:1.2rem;
+}
+
+.container{
+    display: flex;
+    justify-content: space-evenly;
+    color: #84bf94;
+}
+
+body{
+    background-color: #84bf94;
+}
+
+img{
+    width: 55px;
+    height: 45px;
+}
